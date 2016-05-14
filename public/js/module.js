@@ -2,11 +2,30 @@
 
 var app = angular.module("auctionApp", ["ui.router", "ngAnimate", "ui.bootstrap"]);
 
+
 app.config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
-        .state("home", {
+        .state("splash", {
             url : "/"
+        })
+        .state("login", {
+            url : "/login",
+            views : {
+                "body" : {
+                    templateUrl : "/html/login.html",
+                    controller : "loginController"
+                }
+            }
+        })
+        .state("home", {
+            url : "/home",
+            views : {
+                "body" : {
+                    templateUrl : "/html/home.html",
+                    controller : "homeController"
+                }
+            }
         })
 
 

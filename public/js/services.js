@@ -2,6 +2,17 @@
 
 var app = angular.module("auctionApp");
 
-app.service("someService", function () {
+app.service("AuthServices", function ($http) {
 
+    this.submitLogin = function (loginData) {
+        return $http.post("/api/users/login", loginData)
+    };
+
+    this.getProfile = function () {
+      return $http.get("/api/users/profile")
+    };
+
+    this.submitLogout = function () {
+        return $http.post("/api/users/logout")
+    }
 });

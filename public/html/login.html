@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="text-center">
+        <h1>Login</h1>
+    </div>
+    <br>
+    <form ng-submit="submitLogin()">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-4">
+            <div class="form-group label-floating">
+                <label class="control-label" for="focusedInput1">Email</label>
+                <input ng-model="loginData.email" class="form-control" id="focusedInput1" type="email">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-4">
+            <div class="form-group label-floating">
+                <label class="control-label" for="focusedInput1">Password</label>
+                <input ng-model="loginData.password" class="form-control" id="focusedInput1" type="password">
+            </div>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <button style="background-color : #b5a33f" class="btn btn-raised">Login</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -46,11 +46,9 @@ userSchema.statics.register = function (userObject, callback) {
 
 userSchema.statics.authenticate = function (loginData, callback) {
     User.findOne({ email : loginData.email }, function (error, databaseUser) {
-        if (error || !databaseUser) return callback(error || { error : "Authentication Failed." });
-        
+        if (error || !databaseUser) return callback(error || { error : "Authentication Failed. Invalid email or password" });
         bcrypt.compare(loginData.password, databaseUser.password, function (error, isGood ) {
             if (error || !isGood) return callback(error || { error : "Authentication Failed." });
-
             var token = databaseUser.generateToken();
             callback(null, token);
         });

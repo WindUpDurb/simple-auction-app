@@ -21,11 +21,12 @@ router.route("/")
 
 router.post("/login", function (request, response) {
     var loginData = request.body;
-    
     User.authenticate(loginData, function (error, token) {
-        if (error) response.status(400).send(error);
-
-        response.cookie("accessToken", token).send();
+        if (error) {
+            response.status(400).send(error)  ;
+        } else {
+            response.cookie("accessToken", token).send();
+        }
     })
 });
 
@@ -34,8 +35,8 @@ router.post("/logout", function (request, response) {
 });
 
 router.get("/profile", User.isLoggedIn, function (request, response) {
-    console.log("request.user: ", request.user);
-    response.send();
+    var profile = request.user;
+    response.send(profile);
 });
 
 
