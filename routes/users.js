@@ -21,11 +21,11 @@ router.route("/")
 
 router.post("/login", function (request, response) {
     var loginData = request.body;
-    User.authenticate(loginData, function (error, token) {
+    User.authenticate(loginData, function (error, token, userData) {
         if (error) {
             response.status(400).send(error)  ;
         } else {
-            response.cookie("accessToken", token).send();
+            response.cookie("accessToken", token).send(userData);
         }
     })
 });

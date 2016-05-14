@@ -50,7 +50,9 @@ userSchema.statics.authenticate = function (loginData, callback) {
         bcrypt.compare(loginData.password, databaseUser.password, function (error, isGood ) {
             if (error || !isGood) return callback(error || { error : "Authentication Failed." });
             var token = databaseUser.generateToken();
-            callback(null, token);
+            var userDataToSend = databaseUser;
+            userDataToSend.password = null;
+            callback(null, token, userDataToSend);
         });
     });
 };
