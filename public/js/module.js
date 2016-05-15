@@ -27,12 +27,31 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state("accountManagementViews", {
+        .state("userInformation", {
             parent : "accountManagement",
-            url : "/:directory",
+            url : "/userInfo",
             views : {
                 "accountManagementViews" : {
-                    templateUrl : "/html/accountManagementViews.html",
+                    templateUrl : "/html/userInfo.html",
+                    controller : "accountManagementController"
+                }
+            }
+        })
+        .state("manageAuctions", {
+            parent : "accountManagement",
+            url : "/manageAuctions",
+            views : {
+                "accountManagementViews" : {
+                    templateUrl : "/html/manageAuctions.html",
+                    controller : "accountManagementController"
+                }
+            }
+        }).state("newAuction", {
+            parent : "accountManagement",
+            url : "/newAuction",
+            views : {
+                "accountManagementViews" : {
+                    templateUrl : "/html/newAuction.html",
                     controller : "accountManagementController"
                 }
             }

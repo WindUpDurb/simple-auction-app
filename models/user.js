@@ -43,6 +43,23 @@ userSchema.statics.register = function (userObject, callback) {
     });
 };
 
+userSchema.statics.updateAccount = function (userObject, callback) {
+    User.findById(userObject._id, function (error, databaseUser) {
+        if (error || !databaseUser) return callback(error || { error : "Update was unsuccessful" });
+
+        bcrypt.compare(userObject.password, databaseUser.password, function (error, isGood) {
+            if (error || !isGood) return callback(error || { error : "Authentication Failed." });
+            databaseUser.email = userObject.email;
+            databaseUser.mailingAddress = userObject.mailingAddress;
+            databaseUser.save(function (error, savedUser) {
+                if (error) callback(error);
+                var toReturn = savedUser;
+                savedUser.password = null;
+                callback(null, toReturn);
+            });
+        })
+    })
+};
 
 userSchema.statics.authenticate = function (loginData, callback) {
     User.findOne({ email : loginData.email }, function (error, databaseUser) {

@@ -6,16 +6,16 @@
 <br>
 <div class="text-center container">
     <div class="row">
-        <div class="col-sm-3 col-sm-offset-1"><a ng-href="/#/accountManagement/userInfo">User Information</a></div>
-        <div class="col-sm-3"><a ng-href="/#/accountManagement/manageAuctions">Manage Auctions</a></div>
-        <div class="col-sm-3"><a ng-href="/#/accountManagement/createAuction" >Create New Auction</a></div>
+        <div class="col-sm-3 col-sm-offset-1"><a ui-sref="userInformation">User Information</a></div>
+        <div class="col-sm-3"><a ui-sref="manageAuctions">Manage Auctions</a></div>
+        <div class="col-sm-3"><a ui-sref="newAuction">Create New Auction</a></div>
     </div>
 
     <br>
     <br>
     <br>
 
-    <div ui-view="accountManagementViews">
+    <div class="container" ui-view="accountManagementViews">
 
     </div>
 

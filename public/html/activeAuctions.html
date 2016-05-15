@@ -11,7 +11,7 @@
         <div class="panel panel-default">
             <div style="background-color: #b5a33f" class="panel-heading">{{ auction.auctionTitle }}</div>
             <div class="panel-body">
-                <p>Current Bid: {{ auction.currentBid }}</p>
+                <p>Current Bid: {{ auction.currentBid | currency }}</p>
                 <p>Closing Date: {{ auction.auctionCloseDate | date }}</p>
             </div>
         </div>

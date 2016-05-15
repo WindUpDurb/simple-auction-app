@@ -21,6 +21,26 @@ app.service("AuctionServices", function ($http) {
     
     this.getActiveAuctions = function () {
         return $http.get("/api/auctions")
+    };
+    
+    this.createNewAuction = function (newAuction) {
+        return $http.post("/api/auctions", newAuction)
+    };
+
+    this.getMyAuctions = function (activeUserId) {
+        return $http.post("/api/auctions/myAuctions", activeUserId)
+    };
+    
+    this.removeAuction = function (auctionId) {
+        return $http.post("/api/auctions/deleteAuction", auctionId)
     }
     
-})
+});
+
+app.service("AccountManagementServices", function ($http) {
+   
+    this.submitAccountEdits = function (userEdits) {
+       return $http.post("/api/users/updateAccount", userEdits)
+    }
+    
+});

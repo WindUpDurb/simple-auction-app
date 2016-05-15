@@ -8,7 +8,7 @@ app.controller("mainController", function ($scope, AuthServices, $state) {
     AuthServices.getProfile()
         .then(function (response) {
             $scope.activeUser = response.data;
-            console.log($scope.activeUser)
+            console.log("active user: ", $scope.activeUser)
         })
         .catch(function (error) {
             console.log("Error: ", error);
@@ -48,9 +48,58 @@ app.controller("activeAuctionsController", function (AuctionServices, $scope) {
         })
 });
 
-app.controller("accountManagementController", function ($scope, $stateParams) {
-   console.log("Account Management Controller");
-    console.log("State params: ", $stateParams)
+app.controller("accountManagementController", function ($scope, $state, $stateParams, AccountManagementServices, AuctionServices) {
+    console.log("Account Management Controller")
+    
+    $scope.userData = angular.copy($scope.activeUser);
+
+    AuctionServices.getMyAuctions({_id : $scope.activeUser._id})
+        .then(function (response) {
+            $scope.myAuctions = response.data;
+        })
+        .catch(function (error) {
+            console.log("Error: ", error);
+        });
+
+    $scope.submitEdits = function () {
+        var editsToSubmit = $scope.userData;
+        AccountManagementServices.submitAccountEdits(editsToSubmit)
+            .then(function (response) {
+                 $scope.userData = response.data;
+            })
+            .catch(function (error) {
+                console.log("Error: ", error.data.error);
+            })
+    };
+
+    $scope.deleteAuction = function (auctionId) {
+        var toRemove = { _id : auctionId };
+        console.log("To remove: ", toRemove )
+        AuctionServices.removeAuction(toRemove)
+            .then(function (response) {
+                return AuctionServices.getMyAuctions()
+            })
+            .then(function (response2) {
+                $scope.myAuctions = response2.data;
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            });
+    };
+
+    $scope.submitNewAuction = function (newAuctionData) {
+        var dataToSend = angular.copy(newAuctionData);
+        dataToSend._id = $scope.activeUser._id;
+        AuctionServices.createNewAuction(dataToSend)
+            .then(function (response) {
+                console.log("Response: ", response);
+                $state.go("accountManagement");
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            })
+    }
+
 });
 
 

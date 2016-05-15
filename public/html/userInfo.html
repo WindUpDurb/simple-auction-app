@@ -1,0 +1,36 @@
+<h1>User Info</h1>
+<div>
+    <form ng-submit="submitEdits(userData)">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <label class="control-label" for="focusedInput1">Email</label>
+                    <input ng-model="userData.email" class="form-control" id="focusedInput1" type="email" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <label class="control-label" for="focusedInput1">Mailing Address</label>
+                    <input ng-model="userData.mailingAddress" class="form-control" id="focusedInput1" type="text" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <label class="control-label" for="focusedInput1">Enter Your Password to Confirm Edits</label>
+                    <input ng-model="userData.password" class="form-control" id="focusedInput1" type="password" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <button style="background-color : #b5a33f" class="btn btn-raised">Submit Edits</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

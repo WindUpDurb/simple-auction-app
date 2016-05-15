@@ -3,8 +3,11 @@
 var express = require("express");
 var mongoose = require("mongoose");
 var moment = require("moment");
+var User = require("./user");
+var bcrypt = require('bcrypt');
 
 var auctionSchema = new mongoose.Schema({
+    active : { type : Boolean, required : true, default : true },
     openingBid : { type : Number, required : true },
     closingBid : { type : Number },
     currentBid : { type : Number },
@@ -17,14 +20,29 @@ var auctionSchema = new mongoose.Schema({
     auctionImages : [{ type : String }]
 });
 
+//create middleware so that it checks on the active status of an auction
+//if false, cannot interact; it is a closed auction
+// have expiration set active status to false
+
 auctionSchema.statics.createAuction = function (newAuctionData, callback) {
-    var newAuction = new Auction(newAuctionData);
-    var closeUnitOfTime = newAuctionData.closeUnitOfTime;
-    var closeLength = newAuctionData.closeLength;
-    newAuction.currentBid = newAuctionData.openingBid;
-    newAuction.auctionCloseDate = moment().add(closeLength, closeUnitOfTime);
-    newAuction.save(function (error, savedAuction) {
-        callback(error, savedAuction);
+    User.findById(newAuctionData._id, function (error, databaseUser) {
+        if (error || !databaseUser) return callback(error || { error : "Something is not right."});
+
+        bcrypt.compare(newAuctionData.password, databaseUser.password, function (error, isGood) {
+            if (error || !isGood) return callback(error || {error : "Authentication Failed" });
+
+            var newAuction = new Auction(newAuctionData);
+            newAuction.currentBid = newAuctionData.openingBid;
+            newAuction.createdBy = databaseUser._id;
+            newAuction.save(function (error, savedAuction) {
+               if (error) return callback(error);
+                databaseUser.openAuctions.push(savedAuction._id);
+                databaseUser.save(function (error, updatedUser) {
+                    if (error) return callback(error);
+                    callback(null, savedAuction, updatedUser);
+                })
+            });
+        });
     });
 };
 

@@ -39,5 +39,12 @@ router.get("/profile", User.isLoggedIn, function (request, response) {
     response.send(profile);
 });
 
+router.post("/updateAccount", function (request, response) {
+    User.updateAccount(request.body, function (error, updatedData) {
+        if (error) response.status(400).send(error);
+        response.send(updatedData);
+    });
+});
+
 
 module.exports = router;

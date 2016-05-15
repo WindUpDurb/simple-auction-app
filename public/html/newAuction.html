@@ -1,0 +1,61 @@
+<h1>New Auction</h1>
+<div>
+    <form ng-submit="submitNewAuction(newAuction)">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <label class="control-label" for="focusedInput1">What are you putting up for auction?</label>
+                    <input ng-model="newAuction.auctionTitle" class="form-control" id="focusedInput1" type="text" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <label class="control-label" for="focusedInput1">Please include an auction description</label>
+                    <input ng-model="newAuction.auctionDescription" class="form-control" id="focusedInput1" type="text" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <label class="control-label" for="focusedInput1">Include an link to an image, if you like:</label>
+                    <input ng-model="userData.auctionImages" class="form-control" id="focusedInput1" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <label class="control-label" for="focusedInput1">Opening Bid</label>
+                    <input ng-model="newAuction.openingBid" class="form-control" id="focusedInput1" type="number" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <label class="control-label" for="focusedInput1">Closing Date of the Auction</label>
+                    <input ng-model="newAuction.auctionCloseDate" class="form-control" id="focusedInput1" type="date" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <label class="control-label" for="focusedInput1">Enter your password to confirm auction creation</label>
+                    <input ng-model="newAuction.password" class="form-control" id="focusedInput1" type="password" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <button style="background-color : #b5a33f" class="btn btn-raised">Submit New Auction</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
