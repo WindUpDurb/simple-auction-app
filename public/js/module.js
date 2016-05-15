@@ -14,7 +14,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             views : {
                 "body" : {
                     templateUrl : "/html/login.html",
-                    controller : "loginController"
+                    controller : "mainController"
                 }
             }
         })
@@ -24,6 +24,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 "body" : {
                     templateUrl : "/html/home.html",
                     controller : "homeController"
+                }
+            }
+        })
+        .state("activeAuctions", {
+            url : "/activeAuctions",
+            views : {
+                "body" : {
+                    templateUrl : "/html/activeAuctions.html",
+                    controller : "activeAuctionsController"
                 }
             }
         })

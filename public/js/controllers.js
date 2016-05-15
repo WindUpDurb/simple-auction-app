@@ -37,14 +37,21 @@ app.controller("mainController", function ($scope, AuthServices, $state) {
     }
 });
 
+app.controller("activeAuctionsController", function (AuctionServices, $scope) {
+    console.log("Active Auctions Controller");
+    AuctionServices.getActiveAuctions()
+        .then(function (response) {
+            $scope.activeAuctions = response.data;
+        })
+        .catch(function (error) {
+            console.log("Error: ", error);
+        })
+});
+
+
 app.controller("dropdownController", function ($scope, $log ) {
 });
 
 app.controller("homeController", function () {
-
-});
-
-app.controller("loginController", function ($scope, $state, AuthServices) {
-    console.log("Login Controller")
 
 });

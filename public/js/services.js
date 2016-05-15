@@ -16,3 +16,11 @@ app.service("AuthServices", function ($http) {
         return $http.post("/api/users/logout")
     }
 });
+
+app.service("AuctionServices", function ($http) {
+    
+    this.getActiveAuctions = function () {
+        return $http.get("/api/auctions")
+    }
+    
+})
