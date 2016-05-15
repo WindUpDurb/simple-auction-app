@@ -48,6 +48,11 @@ app.controller("activeAuctionsController", function (AuctionServices, $scope) {
         })
 });
 
+app.controller("accountManagementController", function ($scope, $stateParams) {
+   console.log("Account Management Controller");
+    console.log("State params: ", $stateParams)
+});
+
 
 app.controller("dropdownController", function ($scope, $log ) {
 });

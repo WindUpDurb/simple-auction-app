@@ -18,6 +18,25 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state("accountManagement", {
+            url : "/accountManagement",
+            views : {
+                "body" : {
+                    templateUrl : "/html/accountManagement.html",
+                    controller : "accountManagementController"
+                }
+            }
+        })
+        .state("accountManagementViews", {
+            parent : "accountManagement",
+            url : "/:directory",
+            views : {
+                "accountManagementViews" : {
+                    templateUrl : "/html/accountManagementViews.html",
+                    controller : "accountManagementController"
+                }
+            }
+        })
         .state("home", {
             url : "/home",
             views : {
