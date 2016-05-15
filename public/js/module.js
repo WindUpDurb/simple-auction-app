@@ -74,6 +74,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state("auctionDetails", {
+            url : "/auction/:auctionID",
+            views : {
+                "body" : {
+                    templateUrl : "/html/auctionDetails.html",
+                    controller : "auctionDetailsController"
+                }
+            }
+        })
 
 
     $urlRouterProvider.otherwise("/");

@@ -43,6 +43,17 @@ router.post("/myAuctions", function (request, response) {
     });
 });
 
+router.post("/auctionByID", function (request, response) {
+    var auctionID = request.body.auctionID;
+    Auction.findById(auctionID, function (error, auctionData) {
+        if (error) {
+            response.status(400).send(error)
+        } else {
+            response.send(auctionData);
+        }
+    });
+});
+
 
 
 

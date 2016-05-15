@@ -1,0 +1,32 @@
+<div style="padding-bottom : 50px" class="container">
+    <h1 class="pull-right">{{auctionDetails.auctionTitle}}</h1>
+</div>
+<div style="padding-bottom : 50px" class="container text-center">
+    <h4>Current Bid: {{auctionDetails.currentBid | currency}}</h4>
+    <h4>Auction Close Date: {{auctionDetails.auctionCloseDate | date}} </h4>
+</div>
+<div class="container">
+    <div class="jumbotron">
+        <div class="container">
+            <h4 class="pull-left">Auction Description:</h4>
+        </div>
+        <br>
+        <div class="text-center small">
+            <p>
+                {{auctionDetails.auctionDescription}}
+            </p>
+            <p>
+                The auction was created on {{auctionDetails.auctionOpenDate | date}}
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h4 class="pull-right">Total Bids: {{auctionDetails.bidHistory.length}}</h4>
+    <br>
+    <h4 ng-if="auctionDetails.bidHistory.length > 0"  class="pull-right">Bid History: </h4>
+    <h5 class="pull-right">
+        <p ng-repeat="bid in auctionDetails.bidHistory track by $index">{{bid}}</p>
+    </h5>
+</div>

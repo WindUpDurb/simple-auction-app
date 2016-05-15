@@ -33,6 +33,10 @@ app.service("AuctionServices", function ($http) {
     
     this.removeAuction = function (auctionId) {
         return $http.post("/api/auctions/deleteAuction", auctionId)
+    };
+    
+    this.getAuctionByID = function (auctionID) {
+        return $http.post("/api/auctions/auctionByID", auctionID)
     }
     
 });

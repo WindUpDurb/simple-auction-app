@@ -4,6 +4,12 @@
     background-color : #b5a33f;
 }
 
+body {
+    padding-top : 70px;
+    padding-bottom : 70px;
+}
+
+
 #shoppingCartIcon {
 
 }

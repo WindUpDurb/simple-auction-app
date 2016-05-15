@@ -17,8 +17,9 @@
     </div>
 </div>
 
-<div ng-if="!myAuctions" class="container">
+<div ng-if="myAuctions.length === 0" class="container">
     <div class="row">
-        You do not have any auctions!
+        <h3>You do not have any auctions!</h3>
+        <h4>Go ahead and create one.</h4>
     </div>
 </div>

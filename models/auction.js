@@ -25,18 +25,17 @@ var auctionSchema = new mongoose.Schema({
 // have expiration set active status to false
 
 auctionSchema.statics.createAuction = function (newAuctionData, callback) {
-    User.findById(newAuctionData._id, function (error, databaseUser) {
+    User.findById(newAuctionData.createdBy, function (error, databaseUser) {
         if (error || !databaseUser) return callback(error || { error : "Something is not right."});
-
         bcrypt.compare(newAuctionData.password, databaseUser.password, function (error, isGood) {
             if (error || !isGood) return callback(error || {error : "Authentication Failed" });
 
             var newAuction = new Auction(newAuctionData);
             newAuction.currentBid = newAuctionData.openingBid;
-            newAuction.createdBy = databaseUser._id;
             newAuction.save(function (error, savedAuction) {
                if (error) return callback(error);
-                databaseUser.openAuctions.push(savedAuction._id);
+                var copyOfSavedAuctionID = savedAuction.id;
+                databaseUser.openAuctions.push(copyOfSavedAuctionID);
                 databaseUser.save(function (error, updatedUser) {
                     if (error) return callback(error);
                     callback(null, savedAuction, updatedUser);

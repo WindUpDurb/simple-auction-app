@@ -42,6 +42,7 @@ app.controller("activeAuctionsController", function (AuctionServices, $scope) {
     AuctionServices.getActiveAuctions()
         .then(function (response) {
             $scope.activeAuctions = response.data;
+            console.log($scope.activeAuctions)
         })
         .catch(function (error) {
             console.log("Error: ", error);
@@ -89,7 +90,7 @@ app.controller("accountManagementController", function ($scope, $state, $statePa
 
     $scope.submitNewAuction = function (newAuctionData) {
         var dataToSend = angular.copy(newAuctionData);
-        dataToSend._id = $scope.activeUser._id;
+        dataToSend.createdBy = $scope.activeUser._id;
         AuctionServices.createNewAuction(dataToSend)
             .then(function (response) {
                 console.log("Response: ", response);
@@ -99,6 +100,20 @@ app.controller("accountManagementController", function ($scope, $state, $statePa
                 console.log("Error: ", error);
             })
     }
+
+});
+
+app.controller("auctionDetailsController", function ($scope, $stateParams, AuctionServices) {
+    console.log("params: ", $stateParams);
+
+    AuctionServices.getAuctionByID($stateParams)
+        .then(function (response) {
+            $scope.auctionDetails = response.data;
+            console.log($scope.auctionDetails)
+        })
+        .catch(function (error) {
+            console.log("Error: ", error);
+        })
 
 });
 
