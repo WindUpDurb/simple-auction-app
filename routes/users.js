@@ -25,7 +25,7 @@ router.post("/login", function (request, response) {
         if (error) {
             response.status(400).send(error)  ;
         } else {
-            response.cookie("accessToken", token).send(userData);
+            response.cookie("accessToken", token).send(userData)
         }
     })
 });

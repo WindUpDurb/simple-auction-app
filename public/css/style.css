@@ -1,15 +1,9 @@
 #shoppingCartBanner {
-    margin-top : 0px;
     height : 100px;
-    background-color : #b5a33f;
+    background-color : #EEEEEE;
 }
 
 body {
     padding-top : 70px;
     padding-bottom : 70px;
-}
-
-
-#shoppingCartIcon {
-
 }

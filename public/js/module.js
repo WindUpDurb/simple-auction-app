@@ -6,9 +6,6 @@ var app = angular.module("auctionApp", ["ui.router", "ngAnimate", "ui.bootstrap"
 app.config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
-        .state("splash", {
-            url : "/"
-        })
         .state("login", {
             url : "/login",
             views : {
@@ -70,7 +67,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             views : {
                 "body" : {
                     templateUrl : "/html/home.html",
-                    controller : "homeController"
+                    controller : "mainController"
                 }
             }
         })
@@ -94,5 +91,5 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 
 
-    $urlRouterProvider.otherwise("/");
+    $urlRouterProvider.otherwise("/home");
 });

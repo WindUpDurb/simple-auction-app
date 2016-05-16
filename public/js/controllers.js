@@ -19,7 +19,7 @@ app.controller("mainController", function ($scope, AuthServices, $state) {
             .then(function (response) {
                 console.log(response.data)
                 $scope.activeUser = response.data;
-                $state.go("home")
+                $state.go("home", {}, { reload : true });
             })
             .catch(function (error) {
                 console.log("Error: ", error);
@@ -56,7 +56,13 @@ app.controller("activeAuctionsController", function (AuctionServices, $scope) {
     console.log("Active Auctions Controller");
     AuctionServices.getActiveAuctions()
         .then(function (response) {
-            $scope.activeAuctions = response.data;
+            $scope.activeAuctions = [];
+            var auctionList = response.data;
+            for (var i in auctionList) {
+                if (auctionList[i].active) {
+                    $scope.activeAuctions.push(auctionList[i]);
+                }
+            }
             console.log($scope.activeAuctions)
         })
         .catch(function (error) {

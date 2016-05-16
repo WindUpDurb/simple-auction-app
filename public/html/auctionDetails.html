@@ -11,6 +11,12 @@
             <h4 class="pull-left">Auction Description:</h4>
         </div>
         <br>
+        <div ng-if="auctionDetails.auctionImages.length">
+            <img ng-src="{{image}}" ng-repeat="image in auctionDetails.auctionImages">
+        </div>
+        <div class="text-center" ng-if="!auctionDetails.auctionImages.length">
+            <img ng-src="http://crestaproject.com/demo/nucleare-pro/wp-content/themes/nucleare-pro/images/no-image-box.png">
+        </div>
         <div class="text-center small">
             <p>
                 {{auctionDetails.auctionDescription}}
@@ -31,7 +37,7 @@
     </h5>
 </div>
 
-<div ng-if="$scope.activeUser._id !== $scope.auctionDetails.createdBy" style="padding-top : 30px" class="container">
+<div ng-if=" activeUser._id !== auctionDetails.createdBy" style="padding-top : 30px" class="container">
     <h4 class="text-center">Submit a Bid</h4>
     <br>
     <form ng-submit="submitNewBid(newBid)">
