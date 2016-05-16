@@ -54,6 +54,19 @@ router.post("/auctionByID", function (request, response) {
     });
 });
 
+router.post("/newBid/:auctionId", function (request, response) {
+    var bidData = request.body;
+    var auctionID = request.params.auctionId;
+    console.log("request.body : ", request.body);
+    console.log("Params: ", request.params);
+    Auction.submitBid(bidData, auctionID, function (error, savedAuction, savedUser) {
+        if (error) {
+            response.status(400).send(error);
+        } else {
+            response.send({ savedAuction : savedAuction, savedUser : savedUser});
+        }
+    });
+});
 
 
 

@@ -17,6 +17,7 @@ app.controller("mainController", function ($scope, AuthServices, $state) {
     $scope.submitLogin = function (loginData) {
         AuthServices.submitLogin(loginData)
             .then(function (response) {
+                console.log(response.data)
                 $scope.activeUser = response.data;
                 $state.go("home")
             })
@@ -34,7 +35,21 @@ app.controller("mainController", function ($scope, AuthServices, $state) {
             .catch(function (error) {
                 console.log("Error: ", error);
             })
-    }
+    };
+
+    $scope.submitRegistration = function (registrationForm) {
+        if (registrationForm.password !== registrationForm.passwordConfirm || registrationForm.email !== registrationForm.emailConfirm) {
+            console.log("Passwords must match. Email address must match.")
+        } else {
+            AuthServices.submitRegistration(registrationForm)
+                .then(function (response) {
+                    $state.go("login");
+                })
+                .catch(function (error) {
+                    console.log("Error: ", error);
+                })
+        }
+    };
 });
 
 app.controller("activeAuctionsController", function (AuctionServices, $scope) {
@@ -114,7 +129,20 @@ app.controller("auctionDetailsController", function ($scope, $stateParams, Aucti
         .catch(function (error) {
             console.log("Error: ", error);
         })
-
+    
+    $scope.submitNewBid = function (bidData) {
+        var dataToSend = angular.copy(bidData);
+        dataToSend.userID = $scope.activeUser._id;
+        dataToSend.newBid = $scope.auctionDetails.currentBid + bidData.incrementBy;
+        var auctionID = $scope.auctionDetails._id;
+        AuctionServices.submitNewBid(dataToSend, auctionID)
+            .then(function (response) {
+                console.log("response: ", response.data);
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            })
+    }
 });
 
 

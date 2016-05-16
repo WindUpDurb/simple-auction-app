@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="text-center">
+        <h1>Register</h1>
+    </div>
+    <br>
+    <form ng-submit="submitRegistration(registration)">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">Enter your email address</label>
+                    <input ng-model="registration.email" class="form-control" type="email" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">Please confirm your email address</label>
+                    <input ng-model="registration.emailConfirm" class="form-control" type="email" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">Enter your mailing address</label>
+                    <input ng-model="registration.mailingAddress" class="form-control" type="text" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">Enter a password</label>
+                    <input ng-model="registration.password" class="form-control"type="password" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">Please confirm your new password</label>
+                    <input ng-model="registration.passwordConfirm" class="form-control"type="password" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <button style="background-color : #b5a33f" class="btn btn-raised">Register</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

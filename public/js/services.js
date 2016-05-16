@@ -14,6 +14,10 @@ app.service("AuthServices", function ($http) {
 
     this.submitLogout = function () {
         return $http.post("/api/users/logout")
+    };
+    
+    this.submitRegistration = function (registrationData) {
+        return $http.post("/api/users", registrationData);
     }
 });
 
@@ -37,6 +41,10 @@ app.service("AuctionServices", function ($http) {
     
     this.getAuctionByID = function (auctionID) {
         return $http.post("/api/auctions/auctionByID", auctionID)
+    };
+    
+    this.submitNewBid = function (newBidData, auctionID) {
+        return $http.post(`/api/auctions/newBid/${auctionID}`, newBidData)
     }
     
 });

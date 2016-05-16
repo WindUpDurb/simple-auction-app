@@ -8,7 +8,7 @@
         <div class="col-sm-6 col-sm-offset-4">
             <div class="form-group label-floating">
                 <label class="control-label" for="focusedInput1">Email</label>
-                <input ng-model="loginData.email" class="form-control" id="focusedInput1" type="email">
+                <input ng-model="loginData.email" class="form-control" id="focusedInput1" type="email" required>
             </div>
         </div>
     </div>
@@ -16,14 +16,19 @@
         <div class="col-sm-6 col-sm-offset-4">
             <div class="form-group label-floating">
                 <label class="control-label" for="focusedInput1">Password</label>
-                <input ng-model="loginData.password" class="form-control" id="focusedInput1" type="password">
+                <input ng-model="loginData.password" class="form-control" id="focusedInput1" type="password" required>
             </div>
         </div>
     </div>
         <div class="row">
-            <div class="col-sm-6 col-sm-offset-4">
+            <div class="col-sm-4 col-sm-offset-4">
                 <div class="form-group label-floating">
                     <button style="background-color : #b5a33f" class="btn btn-raised">Login</button>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group label-floating">
+                    <button type="button" style="background-color : #b5a33f" class="btn btn-raised"><a ui-sref="register">Register</a></button>
                 </div>
             </div>
         </div>

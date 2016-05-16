@@ -18,6 +18,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state("register", {
+            url : "/register",
+            views : {
+                "body" : {
+                    templateUrl : "html/register.html",
+                    controller : "mainController"
+                }
+            }
+        })
         .state("accountManagement", {
             url : "/accountManagement",
             views : {

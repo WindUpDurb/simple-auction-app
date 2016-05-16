@@ -25,8 +25,46 @@
 <div class="container">
     <h4 class="pull-right">Total Bids: {{auctionDetails.bidHistory.length}}</h4>
     <br>
-    <h4 ng-if="auctionDetails.bidHistory.length > 0"  class="pull-right">Bid History: </h4>
-    <h5 class="pull-right">
-        <p ng-repeat="bid in auctionDetails.bidHistory track by $index">{{bid}}</p>
+    <h5 ng-if="auctionDetails.bidHistory.length" class="pull-right">
+        <p>Bid History: </p>
+        <p ng-repeat="bid in auctionDetails.bidHistory">{{bid | currency}}</p>
     </h5>
+</div>
+
+<div ng-if="$scope.activeUser._id !== $scope.auctionDetails.createdBy" style="padding-top : 30px" class="container">
+    <h4 class="text-center">Submit a Bid</h4>
+    <br>
+    <form ng-submit="submitNewBid(newBid)">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">Increase Current Bid by:</label>
+                    <input step="0.01" min="0.01" ng-model="newBid.incrementBy" class="form-control" type="number" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">Are you sure you would like to place your bid at: </label>
+                    <input class="form-control" type="text" value="{{ auctionDetails.currentBid + newBid.incrementBy | currency }}" ng-readonly="true">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <label class="control-label" for="focusedInput1">Enter your password to confirm auction creation</label>
+                    <input ng-model="newBid.userPassword" class="form-control" id="focusedInput1" type="password" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="form-group label-floating">
+                    <button style="background-color : #b5a33f" class="btn btn-raised">Submit Your Bid</button>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
